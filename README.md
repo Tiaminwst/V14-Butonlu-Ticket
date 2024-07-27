@@ -10,6 +10,7 @@ Ticket Buton oluşturmayı yönetici yetkisine bağladım, yönetici yetkisi olm
 
 
 Açılan Ticket'ları belirleyeceğin rol görebilecek ve cevap verebilecek. Buton'a tıklandığında kanalı açacak, o kanalı Ticket sahibi ve Ticket yetkilisi görebilecek.
+
 ![image](https://github.com/user-attachments/assets/915bafd1-3c98-4103-946a-47e12271f7d2)
 
 
