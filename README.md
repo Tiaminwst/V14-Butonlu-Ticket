@@ -1,0 +1,2 @@
+# V14-Butonlu-Ticket
+SATMA KULLAN YAKALARSAM YAKARIM. :)
