@@ -1,6 +1,6 @@
 const { Client, GatewayIntentBits, EmbedBuilder, ActionRowBuilder, ButtonBuilder, ButtonStyle, PermissionsBitField } = require('discord.js');
 const config = require('./config.json');
-
+// SATMA KULLAN https://github.com/Tiaminwst/V14-Butonlu-Ticket
 const client = new Client({
   intents: [
     GatewayIntentBits.Guilds,
@@ -9,25 +9,25 @@ const client = new Client({
     GatewayIntentBits.MessageContent
   ]
 });
-
+// SATMA KULLAN https://github.com/Tiaminwst/V14-Butonlu-Ticket
 let ticketChannel;
-
+// SATMA KULLAN https://github.com/Tiaminwst/V14-Butonlu-Ticket
 client.on('ready', () => {
   console.log(`Bot ${client.user.tag} olarak giriş yaptı!`);
 });
-// 
+// SATMA KULLAN https://github.com/Tiaminwst/V14-Butonlu-Ticket
 client.on('messageCreate', async message => {
     if (message.content === '.buton') {
         
         if (!message.member.permissions.has(PermissionsBitField.Flags.Administrator)) {
             return; 
         }
-
+// SATMA KULLAN https://github.com/Tiaminwst/V14-Butonlu-Ticket
     const embed = new EmbedBuilder()
       .setColor('#0099ff')
       .setTitle('Ticket')
       .setDescription('Ticket için butona tıkla.');
-
+// SATMA KULLAN https://github.com/Tiaminwst/V14-Butonlu-Ticket
     const row = new ActionRowBuilder()
       .addComponents(
         new ButtonBuilder()
@@ -35,7 +35,7 @@ client.on('messageCreate', async message => {
           .setLabel('Aç')
           .setStyle(ButtonStyle.Primary)
       );
-
+// SATMA KULLAN https://github.com/Tiaminwst/V14-Butonlu-Ticket
     try {
       await message.channel.send({ embeds: [embed], components: [row] });
       console.log('Embed ve buton gönderildi');
@@ -44,7 +44,7 @@ client.on('messageCreate', async message => {
     }
   }
 });
-
+// SATMA KULLAN https://github.com/Tiaminwst/V14-Butonlu-Ticket
 client.on('interactionCreate', async interaction => {
   if (!interaction.isButton()) return;
 
@@ -59,7 +59,7 @@ client.on('interactionCreate', async interaction => {
     if (ticketCategory.children.cache.find(c => c.name === ticketChannelName)) {
       return interaction.reply({ content: 'Zaten açık bir ticketınız var!', ephemeral: true });
     }
-
+// SATMA KULLAN https://github.com/Tiaminwst/V14-Butonlu-Ticket
     try {
       ticketChannel = await interaction.guild.channels.create({ 
         name: ticketChannelName,
@@ -81,12 +81,12 @@ client.on('interactionCreate', async interaction => {
         ],
       });
 
-      
+      // SATMA KULLAN https://github.com/Tiaminwst/V14-Butonlu-Ticket
       const menuEmbed = new EmbedBuilder()
         .setColor('#0099ff')
         .setTitle('Ticket Menü')
         .setDescription('Sorunun çözüldü mü?');
-
+// SATMA KULLAN https://github.com/Tiaminwst/V14-Butonlu-Ticket
       const menuRow = new ActionRowBuilder()
         .addComponents(
           new ButtonBuilder()
@@ -98,7 +98,7 @@ client.on('interactionCreate', async interaction => {
             .setLabel('Ticket Kapat')
             .setStyle(ButtonStyle.Danger)
         );
-
+// SATMA KULLAN https://github.com/Tiaminwst/V14-Butonlu-Ticket
       await ticketChannel.send({ embeds: [menuEmbed], components: [menuRow] });
       await interaction.reply({ content: `Ticket oluşturuldu: ${ticketChannel}`, ephemeral: true });
     } catch (error) {
@@ -118,7 +118,7 @@ client.on('interactionCreate', async interaction => {
       .setColor('#ff0000')
       .setTitle('Ticket Kapatma')
       .setDescription('Emin misin?');
-
+// SATMA KULLAN https://github.com/Tiaminwst/V14-Butonlu-Ticket
     const confirmRow = new ActionRowBuilder()
       .addComponents(
         new ButtonBuilder()
@@ -126,7 +126,7 @@ client.on('interactionCreate', async interaction => {
           .setLabel('Kapat')
           .setStyle(ButtonStyle.Secondary)
       );
-
+// SATMA KULLAN https://github.com/Tiaminwst/V14-Butonlu-Ticket
     await interaction.update({ embeds: [confirmEmbed], components: [confirmRow] });
   } else if (interaction.customId === 'cancelClose') {
     
@@ -135,7 +135,7 @@ client.on('interactionCreate', async interaction => {
     const ticketOpener = interaction.channel.name.split('-')[1];
     const newChannelName = `kapatılan-ticket-${ticketOpener}`;
 
-    
+    // SATMA KULLAN https://github.com/Tiaminwst/V14-Butonlu-Ticket
     await ticketChannel.edit({ 
       name: newChannelName,
       permissionOverwrites: [
@@ -149,7 +149,7 @@ client.on('interactionCreate', async interaction => {
         },
       ],
     });
-
+// SATMA KULLAN https://github.com/Tiaminwst/V14-Butonlu-Ticket
     await interaction.update({ content: 'Ticket kapatıldı.', embeds: [], components: [] });
   }
 });
